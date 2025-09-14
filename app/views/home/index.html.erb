@@ -1,0 +1,50 @@
+<h1>Hello <%= current_user.email %></h1>
+<p>This is the home page.</p>
+
+<% if current_user.doers.blank? %>
+  <p>You don't have any chore doers yet. Why not add some?</p>
+<% end %>
+
+<% if current_user.chores.blank? %>
+  <p>You don't have any chores defined yet. Why not add some?</p>
+<% end %>
+
+
+
+<div>
+  <div class="row">
+    <div class="col-sm-6">
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class='card-title d-inline'>Chores</h3>
+          <%= turbo_frame_tag "new_chore_turbo_frame" do %>
+            <%= render partial: 'chores/new_button' %>
+          <% end %>
+        </div>
+
+        <div class="card-body">
+          <%= turbo_frame_tag "chores_turbo_frame" do %>
+            <%= render current_user.chores %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class='card-title d-inline'>Chore Doers</h3>
+          <%= turbo_frame_tag "new_doer_turbo_frame" do %>
+            <%= render partial: 'doers/new_button' %>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <%= turbo_frame_tag "doers_turbo_frame" do %>
+            <%= render current_user.doers.order('name asc') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

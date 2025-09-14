@@ -1,0 +1,11 @@
+<%= simple_form_for doer, html: { class: 'doer form'} do |f| %>
+  <% if doer.errors.any? %>
+    <div class="alert alert-danger">
+      <%= doer.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+  <%= f.input :name, input_html: {autofocus: true} %>
+  <%= f.input :phone %>
+  <%= link_to "Cancel", doers_path, class: 'btn btn-light' %>
+  <%= f.submit class: 'btn btn-secondary' %>
+<% end %>

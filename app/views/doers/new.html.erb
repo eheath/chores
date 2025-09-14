@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "new_doer_turbo_frame" do %>
+  <div class='panel panel-default'>
+    <div class="panel-heading">
+      <h1>New Doer</h1>
+    </div>
+    <div class="panel-body">
+      <%= render 'form', doer: @doer %>
+    </div>
+  </div>
+<% end %>

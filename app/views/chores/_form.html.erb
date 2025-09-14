@@ -1,0 +1,12 @@
+<%= simple_form_for chore, html: { class: 'chore form'} do |f| %>
+  <% if chore.errors.any? %>
+    <div class="alert alert-danger">
+      <%= chore.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+  <%= f.input :title, input_html: {autofocus: true} %>
+  <%= f.input :notes %>
+  <%= f.input :points, as: :select, collection: [1, 2, 3], selected: 1 %>
+  <%= link_to "Cancel", chores_path, class: 'btn btn-light' %>
+  <%= f.submit class: 'btn btn-secondary' %>
+<% end %>
