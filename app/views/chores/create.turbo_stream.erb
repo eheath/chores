@@ -1,2 +1,2 @@
-<%= turbo_stream.prepend "chores_turbo_frame", partial: 'chores/chore', locals: {chore: @chore} %>
-<%= turbo_stream.update "new_chore_turbo_frame" , partial: 'chores/new_button' %>
+<%= turbo_stream.prepend "chores_list_turbo_frame", partial: 'chores/chore', locals: {chore: @chore} %>
+<%= turbo_stream.update "chore_form_turbo_frame" , partial: 'chores/new_button' %>

@@ -1,5 +1,20 @@
-<div class='mb-10'>
-  <button type='button' class='btn btn-primary'>
-    <%= doer.name %>
-  </button>
-</div>
+<%= turbo_frame_tag doer do %>
+  <div class='mb-10'>
+    <button type='button' class='btn btn-primary'>
+      <span class='pr-10px'><%= doer.name %></span>
+       <%= link_to button_icon('bi bi-pencil-square'),
+            edit_doer_path(doer),
+            data: { turbo_frame: 'doer_form_turbo_frame'}
+        %>
+
+        <%= link_to button_icon('bi bi-trash-fill'),
+              doer_path(doer),
+              method: :delete,
+              data: {
+                'turbo-confirm': "Really delete #{doer.name}?",
+                "turbo-method": :delete
+              }
+        %>
+      </button>
+  </div>
+<% end %>

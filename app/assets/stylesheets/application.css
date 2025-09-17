@@ -30,3 +30,7 @@
   padding: $spacer !important;
 }
 
+.pr-10px {
+  padding-right: 10px;
+}
+

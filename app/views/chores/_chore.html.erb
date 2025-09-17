@@ -1,6 +1,21 @@
-<div class='mb-10'>
-  <button type='button' class='btn btn-primary'>
-    <%= chore.title %>
-    <span class='badge bg-light text-dark'><%= chore.points %> pts</span>
-  </button>
-</div>
+<%= turbo_frame_tag chore do %>
+  <div class='mb-10'>
+    <button type='button' class='btn btn-primary'>
+      <span class="pr-10px"><%= chore.title %></span>
+      <span class='badge bg-light text-dark'><%= chore.points %> pts</span>
+      <%= link_to button_icon('bi bi-pencil-square'),
+          edit_chore_path(chore),
+          data: { turbo_frame: 'chore_form_turbo_frame'}
+      %>
+
+      <%= link_to button_icon('bi bi-trash-fill'),
+            chore_path(chore),
+            method: :delete,
+            data: {
+              'turbo-confirm': "Really delete #{chore.title}?",
+              "turbo-method": :delete
+            }
+      %>
+    </button>
+  </div>
+<% end %>

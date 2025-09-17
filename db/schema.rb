@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_10_155339) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_17_191812) do
   create_table "chore_trackers", force: :cascade do |t|
     t.integer "doer_id"
     t.integer "user_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_10_155339) do
     t.integer "points", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "days"
+    t.boolean "is_deleted"
     t.index ["user_id"], name: "index_chores_on_user_id"
   end
 

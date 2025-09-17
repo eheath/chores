@@ -7,6 +7,17 @@
   <%= f.input :title, input_html: {autofocus: true} %>
   <%= f.input :notes %>
   <%= f.input :points, as: :select, collection: [1, 2, 3], selected: 1 %>
-  <%= link_to "Cancel", chores_path, class: 'btn btn-light' %>
-  <%= f.submit class: 'btn btn-secondary' %>
+  <div class='mb-3'>
+    Days to Perform Chore<br/>
+    <% chore.days_of_week.each do |day| %>
+      <span>
+        <input type='checkbox' value='<%= day %>' name="chore[days][]" class='btn-check' id='<%= day %>' <%= check_day(chore, day) %>/>
+        <label class="btn btn-outline-primary" for='<%= day %>'><%= day %></label>
+      </span>
+    <% end %>
+  </div>
+  <div class='mb-3'>
+    <%= link_to "Cancel", root_path, class: 'btn btn-secondary' %>
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
 <% end %>
