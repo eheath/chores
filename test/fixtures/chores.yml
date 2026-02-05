@@ -1,11 +1,10 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+dishes:
+  user: first_user
+  title: Do the dishes
+  points: 5
+  days: '["Mo","We","Fr"]'
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-# one: {}
-# column: value
-#
-# two: {}
-# column: value
+laundry:
+  user: first_user
+  title: Do the laundry
+  points: 10

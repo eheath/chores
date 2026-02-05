@@ -1,14 +1,43 @@
 require "test_helper"
-require 'byebug'
 
 class ChoreTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  test 'title is required' do
+  test "title is required" do
     chore = Chore.new(user: users(:first_user))
     assert_not chore.valid?
     chore.title = "foo bar"
     assert chore.valid?
+  end
+
+  test "belongs to user" do
+    chore = chores(:dishes)
+    assert_equal users(:first_user), chore.user
+  end
+
+  test "has many doers" do
+    chore = chores(:dishes)
+    assert_respond_to chore, :doers
+  end
+
+  test "set_days initializes days to empty array when nil" do
+    chore = Chore.new(user: users(:first_user), title: "Test chore", points: 1, days: nil)
+    chore.save!
+    assert_equal [], chore.days
+  end
+
+  test "set_days preserves existing days array" do
+    chore = chores(:dishes)
+    chore.save!
+    assert_equal ["Mo", "We", "Fr"], chore.days
+  end
+
+  test "days_of_week returns expected abbreviations" do
+    chore = Chore.new
+    assert_equal %w(Su Mo Tu We Th Fr Sa), chore.days_of_week
+  end
+
+  test "days JSON round-trips correctly" do
+    chore = Chore.create!(user: users(:first_user), title: "Round trip", points: 1, days: ["Tu", "Th"])
+    chore.reload
+    assert_equal ["Tu", "Th"], chore.days
   end
 end
