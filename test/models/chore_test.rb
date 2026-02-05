@@ -27,17 +27,17 @@ class ChoreTest < ActiveSupport::TestCase
   test "set_days preserves existing days array" do
     chore = chores(:dishes)
     chore.save!
-    assert_equal ["Mo", "We", "Fr"], chore.days
+    assert_equal %w[ Mo We Fr ], chore.days
   end
 
   test "days_of_week returns expected abbreviations" do
     chore = Chore.new
-    assert_equal %w(Su Mo Tu We Th Fr Sa), chore.days_of_week
+    assert_equal %w[ Su Mo Tu We Th Fr Sa ], chore.days_of_week
   end
 
   test "days JSON round-trips correctly" do
-    chore = Chore.create!(user: users(:first_user), title: "Round trip", points: 1, days: ["Tu", "Th"])
+    chore = Chore.create!(user: users(:first_user), title: "Round trip", points: 1, days: %w[ Tu Th ])
     chore.reload
-    assert_equal ["Tu", "Th"], chore.days
+    assert_equal %w[ Tu Th ], chore.days
   end
 end
