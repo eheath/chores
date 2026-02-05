@@ -10,7 +10,7 @@ class ChoresController < ApplicationController
   end
 
   def edit
-    @chore = current_user.chores.detect { |c| c.id == params[:id].to_i }
+    @chore = current_user.chores.find(params[:id])
   end
 
   def create
@@ -23,7 +23,7 @@ class ChoresController < ApplicationController
   end
 
   def update
-    @chore = current_user.chores.detect { |c| c.id == params[:id].to_i }
+    @chore = current_user.chores.find(params[:id])
     if @chore.update(my_params)
       render :update
     else
@@ -32,7 +32,7 @@ class ChoresController < ApplicationController
   end
 
   def destroy
-    @chore = current_user.chores.detect { |c| c.id == params[:id].to_i }
+    @chore = current_user.chores.find(params[:id])
     @chore.delete if @chore.present?
   end
 
