@@ -3,6 +3,7 @@ class Chore < ApplicationRecord
   has_many :chore_trackers, dependent: :destroy
   has_many :doers, through: :chore_trackers
   validates :title, presence: true
+  validates :points, presence: true
   serialize :days, coder: JSON
   before_save :set_days
 
@@ -14,6 +15,6 @@ class Chore < ApplicationRecord
   end
 
   def set_days
-    self.days = [] if self.days.nil?
+    self.days = [] if days.nil?
   end
 end

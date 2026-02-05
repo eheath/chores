@@ -2,10 +2,15 @@ require "test_helper"
 
 class ChoreTest < ActiveSupport::TestCase
   test "title is required" do
-    chore = Chore.new(user: users(:first_user))
+    chore = Chore.new(user: users(:first_user), points: 1)
     assert_not chore.valid?
-    chore.title = "foo bar"
-    assert chore.valid?
+    assert_includes chore.errors[:title], "can't be blank"
+  end
+
+  test "points is required" do
+    chore = Chore.new(user: users(:first_user), title: "Test")
+    assert_not chore.valid?
+    assert_includes chore.errors[:points], "can't be blank"
   end
 
   test "belongs to user" do

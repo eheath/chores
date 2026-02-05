@@ -10,7 +10,7 @@ class DoersController < ApplicationController
   end
 
   def edit
-    @doer = current_user.doers.find(params[:id])
+    @doer = current_user.doers.active.find(params[:id])
   end
 
   def create
@@ -19,7 +19,7 @@ class DoersController < ApplicationController
   end
 
   def update
-    @doer = current_user.doers.find(params[:id])
+    @doer = current_user.doers.active.find(params[:id])
 
     if @doer.update(my_params)
       render :update
