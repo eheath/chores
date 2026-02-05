@@ -25,7 +25,11 @@
 
         <div class="card-body">
           <%= turbo_frame_tag "chores_list_turbo_frame" do %>
-            <%= render current_user.chores %>
+            <% if current_user.chores.present? %>
+              <%= render current_user.chores %>
+            <% else %>
+              Click the "New Chore" button to create a chore.
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -40,7 +44,11 @@
         </div>
         <div class="card-body">
           <%= turbo_frame_tag "doers_turbo_frame" do %>
-            <%= render current_user.doers.order('name asc') %>
+            <% if current_user.doers.present? %>
+              <%= render current_user.doers.order('name asc') %>
+            <% else %>
+              Click the "New Doer" button to create a chore doer.
+            <% end %>
           <% end %>
         </div>
       </div>

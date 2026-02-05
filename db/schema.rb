@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_17_191812) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_17_200802) do
   create_table "chore_trackers", force: :cascade do |t|
     t.integer "doer_id"
     t.integer "user_id"
@@ -27,12 +27,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_191812) do
   create_table "chores", force: :cascade do |t|
     t.integer "user_id"
     t.string "title", null: false
-    t.string "notes"
+    t.text "notes"
     t.integer "points", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "days"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
+    t.boolean "is_active", default: true
     t.index ["user_id"], name: "index_chores_on_user_id"
   end
 
@@ -42,6 +43,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_17_191812) do
     t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_deleted", default: false
+    t.boolean "is_active", default: true
     t.index ["user_id"], name: "index_doers_on_user_id"
   end
 
