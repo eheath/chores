@@ -29,4 +29,18 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
     assert_includes user.errors[:password], "can't be blank"
   end
+
+  test "destroying user destroys associated chores" do
+    user = users(:second_user)
+    chore = Chore.create!(user: user, title: "Test chore", points: 1)
+    user.destroy
+    assert_not Chore.exists?(chore.id)
+  end
+
+  test "destroying user destroys associated doers" do
+    user = users(:second_user)
+    doer = Doer.create!(user: user, name: "Test", phone: "555-0000")
+    user.destroy
+    assert_not Doer.exists?(doer.id)
+  end
 end

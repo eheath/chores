@@ -40,4 +40,23 @@ class ChoreTest < ActiveSupport::TestCase
     chore.reload
     assert_equal %w[ Tu Th ], chore.days
   end
+
+  test "has many doers through chore_trackers" do
+    chore = chores(:dishes)
+    assert_includes chore.doers, doers(:alice)
+  end
+
+  test "active scope excludes deleted chores" do
+    chore = chores(:dishes)
+    chore.update!(is_deleted: true)
+    assert_not_includes Chore.active, chore
+    assert_includes Chore.deleted, chore
+  end
+
+  test "destroying chore destroys associated chore_trackers" do
+    chore = chores(:dishes)
+    tracker = chore_trackers(:tracker_one)
+    chore.destroy
+    assert_not ChoreTracker.exists?(tracker.id)
+  end
 end
