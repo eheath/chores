@@ -54,7 +54,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'byebug'
+  gem "byebug"
 end
 
 group :test do
@@ -63,7 +63,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'devise'
+gem "devise"
 gem "devise-i18n"
 gem "devise-bootstrap5"
-gem 'simple_form'
+gem "simple_form"

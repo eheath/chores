@@ -10,7 +10,7 @@ class ChoresController < ApplicationController
   end
 
   def edit
-    @chore = current_user.chores.detect{|c| c.id == params[:id].to_i}
+    @chore = current_user.chores.detect { |c| c.id == params[:id].to_i }
   end
 
   def create
@@ -23,7 +23,7 @@ class ChoresController < ApplicationController
   end
 
   def update
-    @chore = current_user.chores.detect{ |c| c.id == params[:id].to_i }
+    @chore = current_user.chores.detect { |c| c.id == params[:id].to_i }
     if @chore.update(my_params)
       render :update
     else
@@ -32,13 +32,13 @@ class ChoresController < ApplicationController
   end
 
   def destroy
-    @chore = current_user.chores.detect{|c| c.id == params[:id].to_i}
+    @chore = current_user.chores.detect { |c| c.id == params[:id].to_i }
     @chore.delete if @chore.present?
   end
 
   private
 
   def my_params
-    params.expect(chore: [:title, :notes, :points, :days])
+    params.expect(chore: [ :title, :notes, :points, :days ])
   end
 end

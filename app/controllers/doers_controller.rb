@@ -10,7 +10,7 @@ class DoersController < ApplicationController
   end
 
   def edit
-    @doer = current_user.doers.detect{ |d| d.id == params[:id].to_i }
+    @doer = current_user.doers.detect { |d| d.id == params[:id].to_i }
   end
 
   def create
@@ -19,7 +19,7 @@ class DoersController < ApplicationController
   end
 
   def update
-    @doer = current_user.doers.detect{ |d| d.id == params[:id].to_i }
+    @doer = current_user.doers.detect { |d| d.id == params[:id].to_i }
 
     if @doer.update(my_params)
       render :update
@@ -34,6 +34,6 @@ class DoersController < ApplicationController
   private
 
   def my_params
-    params.expect(doer: [:name, :phone])
+    params.expect(doer: [ :name, :phone ])
   end
 end
